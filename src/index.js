@@ -96,8 +96,8 @@ let loader = new GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), (gltf) => {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
   iss.add(gltf.scene);
-  iss.rotateY(-2);
-  iss.rotateZ(-3);
+  // iss.rotateY(-2);
+  // iss.rotateZ(-3);
 
   // iss.position.set(1.5, 1.5, 1.5);
   scene.add(iss);
@@ -139,12 +139,9 @@ setInterval(() => {
 // // controls;
 controls = new OrbitControls(camera, canvas);
 
-
-
 var cameraPivot = new Object3D();
 earthMesh.add(cameraPivot);
 cameraPivot.add(camera);
-
 
 //renderer
 renderer = new WebGLRenderer({
@@ -163,9 +160,9 @@ const render = () => {
 const animate = () => {
   requestAnimationFrame(animate);
   // earthMesh.rotation.y -= 0.0015;
-  cameraPivot.rotation.y -=0.0015;
+  cameraPivot.rotation.y -= 0.0015;
   controls.update();
-  cloudMesh.rotation.y -= 0.0003;
+  cloudMesh.rotation.y += 0.0003;
   // cloudMesh.rotation.x -= 0.0003;
 
   render();

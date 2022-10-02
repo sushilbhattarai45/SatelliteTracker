@@ -36850,9 +36850,9 @@ var iss = new _three.Group();
 var loader = new _GLTFLoader.GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), function (gltf) {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
-  iss.add(gltf.scene);
-  iss.rotateY(-2);
-  iss.rotateZ(-3); // iss.position.set(1.5, 1.5, 1.5);
+  iss.add(gltf.scene); // iss.rotateY(-2);
+  // iss.rotateZ(-3);
+  // iss.position.set(1.5, 1.5, 1.5);
 
   scene.add(iss);
 });
@@ -36935,7 +36935,11 @@ var animate = function animate() {
 
   cameraPivot.rotation.y -= 0.0015;
   controls.update();
+<<<<<<< HEAD
   cloudMesh.rotation.y -= 0.0003; // cloudMesh.rotation.x -= 0.0003;
+=======
+  cloudMesh.rotation.y += 0.0003; // cloudMesh.rotation.x -= 0.0003;
+>>>>>>> 0d716061d929e032c68f204bd6b02ae095be7b4a
 
   render();
 };
@@ -36978,7 +36982,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "58944" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59961" + '/');
+>>>>>>> 0d716061d929e032c68f204bd6b02ae095be7b4a
 
   ws.onmessage = function (event) {
     checkedAssets = {};

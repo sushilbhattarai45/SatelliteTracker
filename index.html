@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>THREE.js</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+
+  <body>
+    <div id="nav">
+      <p>International Space Station Tracker in 3D - Team Hashmukh</p>
+    </div>
+    <div id="scene-container"></div>
+    <div id="details">
+      <p id="note">
+        The Satellite's Position is its real time position <br />
+        and is synced with the earth latitude and longitude.
+      </p>
+
+      <p id="lat" class="a1"></p>
+
+      <p id="long" class="a1"></p>
+      <p id="alt" class="a1"></p>
+
+      <p id="velo" class="a1"></p>
+      <p id="note">
+        Data given is real time data <br />
+        and refreshes after every 5 seconds.
+      </p>
+    </div>
+
+    <div id="devdetails">
+      <img
+        width="100"
+        height="50"
+        id="logo"
+        src="./src/textures/download.png"
+      />
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>

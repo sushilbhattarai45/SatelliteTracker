@@ -1,0 +1,25 @@
+{
+  "name": "satelite-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@loaders.gl/gltf": "^3.2.9",
+    "@maptalks/gltf-loader": "0.27.1",
+    "detect-gpu": "0.0.40",
+    "gltf-loader": "^1.0.0",
+    "three": "0.103.0",
+    "three-fbx-loader": "1.0.3",
+    "three-orbitcontrols": "2.102.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

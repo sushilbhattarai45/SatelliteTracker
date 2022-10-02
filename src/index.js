@@ -96,8 +96,8 @@ let loader = new GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), (gltf) => {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
   iss.add(gltf.scene);
-  // iss.rotateY(-2);
-  // iss.rotateZ(-3);
+  iss.rotateY(-2);
+  iss.rotateZ(-3);
 
   // iss.position.set(1.5, 1.5, 1.5);
   scene.add(iss);

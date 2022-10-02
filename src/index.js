@@ -83,6 +83,13 @@ const starMaterial = new MeshBasicMaterial({
 });
 const starMesh = new Mesh(starGeometry, starMaterial);
 scene.add(starMesh);
+const cloudGeometry = new SphereGeometry(1.02, 30, 30);
+const cloudMaterial = new MeshBasicMaterial({
+  map: new TextureLoader().load(require("./textures/earthCloud.png")),
+  transparent: true,
+});
+const cloudMesh = new Mesh(cloudGeometry, cloudMaterial);
+scene.add(cloudMesh);
 
 //ISS
 let iss = new Group();
@@ -153,7 +160,7 @@ const animate = () => {
   // earthMesh.rotation.y -= 0.0015;
   //   iss.rotation.y -=0.005
   controls.update();
-  // cloudMesh.rotation.y -= 0.0003;
+  cloudMesh.rotation.y -= 0.0003;
   // cloudMesh.rotation.x -= 0.0003;
 
   render();

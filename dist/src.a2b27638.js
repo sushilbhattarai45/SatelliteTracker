@@ -36850,9 +36850,9 @@ var iss = new _three.Group();
 var loader = new _GLTFLoader.GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), function (gltf) {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
-  iss.add(gltf.scene);
-  iss.rotateY(-2);
-  iss.rotateZ(-3); // iss.position.set(1.5, 1.5, 1.5);
+  iss.add(gltf.scene); // iss.rotateY(-2);
+  // iss.rotateZ(-3);
+  // iss.position.set(1.5, 1.5, 1.5);
 
   scene.add(iss);
 });
@@ -36910,9 +36910,12 @@ var getSateliteData = /*#__PURE__*/function () {
 getSateliteData();
 setInterval(function () {
   getSateliteData();
-}, 2 * 1000); // // controls;
+}, 5 * 1000); // // controls;
 
-controls = new _threeOrbitcontrols.default(camera, canvas); //renderer
+controls = new _threeOrbitcontrols.default(camera, canvas);
+var cameraPivot = new _three.Object3D();
+earthMesh.add(cameraPivot);
+cameraPivot.add(camera); //renderer
 
 renderer = new _three.WebGLRenderer({
   antialias: true
@@ -36929,10 +36932,10 @@ var render = function render() {
 
 var animate = function animate() {
   requestAnimationFrame(animate); // earthMesh.rotation.y -= 0.0015;
-  //   iss.rotation.y -=0.005
 
+  cameraPivot.rotation.y -= 0.0015;
   controls.update();
-  cloudMesh.rotation.y -= 0.0003; // cloudMesh.rotation.x -= 0.0003;
+  cloudMesh.rotation.y += 0.0003; // cloudMesh.rotation.x -= 0.0003;
 
   render();
 };
@@ -36975,7 +36978,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59711" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59961" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

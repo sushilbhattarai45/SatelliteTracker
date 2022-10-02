@@ -15,6 +15,7 @@ import {
   Vector3,
   Line,
   Geometry,
+  Object3D,
   Line3,
   TubeGeometry,
   BufferGeometry,
@@ -98,8 +99,8 @@ let loader = new GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), (gltf) => {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
   iss.add(gltf.scene);
-  iss.rotateY(-2);
-  iss.rotateZ(-3);
+  // iss.rotateY(-2);
+  // iss.rotateZ(-3);
 
   // iss.position.set(1.5, 1.5, 1.5);
   scene.add(iss);
@@ -137,16 +138,13 @@ getSateliteData();
 
 setInterval(() => {
   getSateliteData();
-}, 2 * 1000);
+}, 5 * 1000);
 // // controls;
 controls = new OrbitControls(camera, canvas);
-
-
 
 var cameraPivot = new Object3D();
 earthMesh.add(cameraPivot);
 cameraPivot.add(camera);
-
 
 //renderer
 renderer = new WebGLRenderer({
@@ -165,9 +163,9 @@ const render = () => {
 const animate = () => {
   requestAnimationFrame(animate);
   // earthMesh.rotation.y -= 0.0015;
-  cameraPivot.rotation.y -=0.0015;
+  cameraPivot.rotation.y -= 0.0015;
   controls.update();
-  cloudMesh.rotation.y -= 0.0003;
+  cloudMesh.rotation.y += 0.0003;
   // cloudMesh.rotation.x -= 0.0003;
 
   render();

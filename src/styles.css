@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 body {
   margin: 0;
   overflow: hidden;
   color: white;
+  font-family: 'Silkscreen', cursive;
+
   text-align: center;
 }
 #logo {
@@ -37,10 +40,14 @@ a:hover {
   margin-bottom: 30px;
   position: absolute;
   bottom: 0;
-  border-radius: 20px;
-  padding: 20px;
-  background-color: white;
-  color: black;
+  padding: 16px;
+  border-color: white;
+  border-width: 1px;
+  border-style: solid;
+  text-align: left;
+  font-size: 12;
+  /* background-color: white; */
+  color: white;
   /* justify-content: center;
   align-content: center;
   align-items: center;
@@ -72,5 +79,5 @@ a:hover {
   font-weight: 400;
 }
 #note {
-  font-size: 18px;
+  font-size: 10px;
 }

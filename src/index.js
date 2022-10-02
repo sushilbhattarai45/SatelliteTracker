@@ -12,12 +12,9 @@ import {
   SphereGeometry,
   MeshBasicMaterial,
   BackSide,
-  Vector3,
-  Line,
-  Geometry,
-  Line3,
-  TubeGeometry,
-  BufferGeometry,
+  Object3D,
+  Color,
+  IcosahedronBufferGeometry,
 } from "three";
 import OrbitControls from "three-orbitcontrols";
 import { getGPUTier } from "detect-gpu";
@@ -63,6 +60,7 @@ pointLight.position.set(10, 6, 10);
 scene.add(mainLight, pointLight);
 
 // meshes
+
 const earthMesh = new Mesh(
   new SphereBufferGeometry(1, 30, 30),
   new MeshPhongMaterial({

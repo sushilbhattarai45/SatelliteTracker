@@ -36762,6 +36762,8 @@ module.exports = "/earth4k.5dbf5409.jpg";
 module.exports = "/earthbump.ad542858.jpg";
 },{}],"src/textures/galaxy.png":[function(require,module,exports) {
 module.exports = "/galaxy.01a665d2.png";
+},{}],"src/textures/earthCloud.png":[function(require,module,exports) {
+module.exports = "/earthCloud.931b2bcb.png";
 },{}],"src/textures/models/ISS_stationary.glb":[function(require,module,exports) {
 module.exports = "/ISS_stationary.cc578880.glb";
 },{}],"src/index.js":[function(require,module,exports) {
@@ -36835,7 +36837,14 @@ var starMaterial = new _three.MeshBasicMaterial({
   side: _three.BackSide
 });
 var starMesh = new _three.Mesh(starGeometry, starMaterial);
-scene.add(starMesh); //ISS
+scene.add(starMesh);
+var cloudGeometry = new _three.SphereGeometry(1.02, 30, 30);
+var cloudMaterial = new _three.MeshBasicMaterial({
+  map: new _three.TextureLoader().load(require("./textures/earthCloud.png")),
+  transparent: true
+});
+var cloudMesh = new _three.Mesh(cloudGeometry, cloudMaterial);
+scene.add(cloudMesh); //ISS
 
 var iss = new _three.Group();
 var loader = new _GLTFLoader.GLTFLoader();
@@ -36903,7 +36912,10 @@ setInterval(function () {
   getSateliteData();
 }, 5 * 1000); // // controls;
 
-controls = new _threeOrbitcontrols.default(camera, canvas); //renderer
+controls = new _threeOrbitcontrols.default(camera, canvas);
+var cameraPivot = new _three.Object3D();
+earthMesh.add(cameraPivot);
+cameraPivot.add(camera); //renderer
 
 renderer = new _three.WebGLRenderer({
   antialias: true
@@ -36920,10 +36932,10 @@ var render = function render() {
 
 var animate = function animate() {
   requestAnimationFrame(animate); // earthMesh.rotation.y -= 0.0015;
-  //   iss.rotation.y -=0.005
 
-  controls.update(); // cloudMesh.rotation.y -= 0.0003;
-  // cloudMesh.rotation.x -= 0.0003;
+  cameraPivot.rotation.y -= 0.0015;
+  controls.update();
+  cloudMesh.rotation.y -= 0.0003; // cloudMesh.rotation.x -= 0.0003;
 
   render();
 };
@@ -36938,7 +36950,7 @@ function onWindowResize() {
 }
 
 window.addEventListener("resize", onWindowResize, false);
-},{"three":"node_modules/three/build/three.module.js","three-orbitcontrols":"node_modules/three-orbitcontrols/OrbitControls.js","detect-gpu":"node_modules/detect-gpu/build/detect-gpu.min.js","three/examples/jsm/loaders/GLTFLoader.js":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","./api":"src/api.js","./textures/earth4k.jpg":"src/textures/earth4k.jpg","./textures/earthbump.jpg":"src/textures/earthbump.jpg","./textures/galaxy.png":"src/textures/galaxy.png","./textures/models/ISS_stationary.glb":"src/textures/models/ISS_stationary.glb"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three-orbitcontrols":"node_modules/three-orbitcontrols/OrbitControls.js","detect-gpu":"node_modules/detect-gpu/build/detect-gpu.min.js","three/examples/jsm/loaders/GLTFLoader.js":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","./api":"src/api.js","./textures/earth4k.jpg":"src/textures/earth4k.jpg","./textures/earthbump.jpg":"src/textures/earthbump.jpg","./textures/galaxy.png":"src/textures/galaxy.png","./textures/earthCloud.png":"src/textures/earthCloud.png","./textures/models/ISS_stationary.glb":"src/textures/models/ISS_stationary.glb"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -36966,7 +36978,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50691" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58944" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

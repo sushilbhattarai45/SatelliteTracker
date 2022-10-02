@@ -120,7 +120,7 @@ const getSateliteData = async () => {
     setLat.innerHTML = `Latitude: ${resp.latitude} `;
 
     // setDetails.innerHTML = `Altitude: ${resp.altitude}, Latitude: ${resp.latitude}, Longitude: ${resp.longitude}`;
-    let issPos = convertLatLngToCartesian(resp.latitude, resp.longitude, 3);
+    let issPos = convertLatLngToCartesian(resp.latitude, resp.longitude, 2.4);
     console.log(resp);
     console.log(issPos);
     if (issPos.x) {

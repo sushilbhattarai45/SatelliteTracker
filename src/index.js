@@ -31,13 +31,13 @@ let scene;
 let controls;
 
 const canvas = document.querySelector("#scene-container");
-const convertLatLngToCartesian = (lat, lng) => {
+const convertLatLngToCartesian = (lat, lng, r) => {
   let phi = (90 - lat) * (Math.PI / 180);
   let theta = (180 + lng) * (Math.PI / 180);
 
-  let x = -(Math.sin(phi) * Math.cos(theta));
-  let z = Math.sin(phi) * Math.sin(theta);
-  let y = Math.cos(phi);
+  let x = -r*(Math.sin(phi) * Math.cos(theta));
+  let z = r*Math.sin(phi) * Math.sin(theta);
+  let y = r*Math.cos(phi);
   return { x, y, z };
 };
 //scene
@@ -96,8 +96,7 @@ let loader = new GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), (gltf) => {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
   iss.add(gltf.scene);
-  iss.rotateY(-2);
-  iss.rotateZ(-3);
+  
 
   // iss.position.set(1.5, 1.5, 1.5);
   scene.add(iss);
@@ -110,7 +109,7 @@ const getSateliteData = async () => {
   let setVelocity = document.querySelector("#velo");
   let setAltitude = document.querySelector("#alt");
 
-  let f = 1.5;
+  let f = 0;
   let resp = await callApi();
   console.log(resp);
   if (resp.latitude) {
@@ -121,7 +120,7 @@ const getSateliteData = async () => {
     setLat.innerHTML = `Latitude: ${resp.latitude} `;
 
     // setDetails.innerHTML = `Altitude: ${resp.altitude}, Latitude: ${resp.latitude}, Longitude: ${resp.longitude}`;
-    let issPos = convertLatLngToCartesian(resp.latitude, resp.longitude);
+    let issPos = convertLatLngToCartesian(resp.latitude, resp.longitude, 3);
     console.log(resp);
     console.log(issPos);
     if (issPos.x) {
@@ -160,8 +159,9 @@ const render = () => {
 const animate = () => {
   requestAnimationFrame(animate);
   // earthMesh.rotation.y -= 0.0015;
-  let checked = document.querySelector("#checkbox").checked;
-  if (!checked) {
+  let checked = document.querySelector("#checkbox");
+  checked.checked = true
+  if (!checked.checked) {
     cameraPivot.rotation.y -= 0.0015;
   }
   controls.update();

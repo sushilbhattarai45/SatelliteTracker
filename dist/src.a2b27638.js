@@ -36797,12 +36797,12 @@ var scene;
 var controls;
 var canvas = document.querySelector("#scene-container");
 
-var convertLatLngToCartesian = function convertLatLngToCartesian(lat, lng) {
+var convertLatLngToCartesian = function convertLatLngToCartesian(lat, lng, r) {
   var phi = (90 - lat) * (Math.PI / 180);
   var theta = (180 + lng) * (Math.PI / 180);
-  var x = -(Math.sin(phi) * Math.cos(theta));
-  var z = Math.sin(phi) * Math.sin(theta);
-  var y = Math.cos(phi);
+  var x = -r * (Math.sin(phi) * Math.cos(theta));
+  var z = r * Math.sin(phi) * Math.sin(theta);
+  var y = r * Math.cos(phi);
   return {
     x: x,
     y: y,
@@ -36850,9 +36850,7 @@ var iss = new _three.Group();
 var loader = new _GLTFLoader.GLTFLoader();
 loader.load(require("./textures/models/ISS_stationary.glb"), function (gltf) {
   gltf.scene.scale.set(0.007, 0.007, 0.007);
-  iss.add(gltf.scene);
-  iss.rotateY(-2);
-  iss.rotateZ(-3); // iss.position.set(1.5, 1.5, 1.5);
+  iss.add(gltf.scene); // iss.position.set(1.5, 1.5, 1.5);
 
   scene.add(iss);
 });
@@ -36869,7 +36867,7 @@ var getSateliteData = /*#__PURE__*/function () {
             setLat = document.querySelector("#lat");
             setVelocity = document.querySelector("#velo");
             setAltitude = document.querySelector("#alt");
-            f = 1.5;
+            f = 0;
             _context.next = 8;
             return (0, _api.callApi)();
 
@@ -36883,7 +36881,7 @@ var getSateliteData = /*#__PURE__*/function () {
               setAltitude.innerHTML = "Altitude: ".concat(resp.altitude, " ");
               setLat.innerHTML = "Latitude: ".concat(resp.latitude, " "); // setDetails.innerHTML = `Altitude: ${resp.altitude}, Latitude: ${resp.latitude}, Longitude: ${resp.longitude}`;
 
-              issPos = convertLatLngToCartesian(resp.latitude, resp.longitude);
+              issPos = convertLatLngToCartesian(resp.latitude, resp.longitude, 3);
               console.log(resp);
               console.log(issPos);
 
@@ -36933,9 +36931,10 @@ var render = function render() {
 var animate = function animate() {
   requestAnimationFrame(animate); // earthMesh.rotation.y -= 0.0015;
 
-  var checked = document.querySelector("#checkbox").checked;
+  var checked = document.querySelector("#checkbox");
+  checked.checked = true;
 
-  if (!checked) {
+  if (!checked.checked) {
     cameraPivot.rotation.y -= 0.0015;
   }
 

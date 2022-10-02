@@ -141,6 +141,13 @@ setInterval(() => {
 // // controls;
 controls = new OrbitControls(camera, canvas);
 
+
+
+var cameraPivot = new Object3D();
+earthMesh.add(cameraPivot);
+cameraPivot.add(camera);
+
+
 //renderer
 renderer = new WebGLRenderer({
   antialias: true,
@@ -158,7 +165,7 @@ const render = () => {
 const animate = () => {
   requestAnimationFrame(animate);
   // earthMesh.rotation.y -= 0.0015;
-  //   iss.rotation.y -=0.005
+  cameraPivot.rotation.y -=0.0015;
   controls.update();
   cloudMesh.rotation.y -= 0.0003;
   // cloudMesh.rotation.x -= 0.0003;

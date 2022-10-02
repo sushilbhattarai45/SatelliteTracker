@@ -36932,7 +36932,6 @@ var animate = function animate() {
   requestAnimationFrame(animate); // earthMesh.rotation.y -= 0.0015;
 
   var checked = document.querySelector("#checkbox");
-  checked.checked = true;
 
   if (!checked.checked) {
     cameraPivot.rotation.y -= 0.0015;

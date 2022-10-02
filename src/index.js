@@ -160,7 +160,6 @@ const animate = () => {
   requestAnimationFrame(animate);
   // earthMesh.rotation.y -= 0.0015;
   let checked = document.querySelector("#checkbox");
-  checked.checked = true
   if (!checked.checked) {
     cameraPivot.rotation.y -= 0.0015;
   }

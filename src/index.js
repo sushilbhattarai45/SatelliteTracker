@@ -130,7 +130,7 @@ getSateliteData();
 
 setInterval(() => {
   getSateliteData();
-}, 5 * 1000);
+}, 2 * 1000);
 // // controls;
 controls = new OrbitControls(camera, canvas);
 

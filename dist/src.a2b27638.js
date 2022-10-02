@@ -36901,7 +36901,7 @@ var getSateliteData = /*#__PURE__*/function () {
 getSateliteData();
 setInterval(function () {
   getSateliteData();
-}, 5 * 1000); // // controls;
+}, 2 * 1000); // // controls;
 
 controls = new _threeOrbitcontrols.default(camera, canvas); //renderer
 

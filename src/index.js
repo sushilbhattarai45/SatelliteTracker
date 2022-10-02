@@ -49,7 +49,7 @@ camera = new PerspectiveCamera(
   0.001,
   1000
 );
-camera.position.set(-2, 4, 20);
+camera.position.set(-2, 4, 25);
 scene.add(camera);
 
 //lights
@@ -160,7 +160,10 @@ const render = () => {
 const animate = () => {
   requestAnimationFrame(animate);
   // earthMesh.rotation.y -= 0.0015;
-  cameraPivot.rotation.y -= 0.0015;
+  let checked = document.querySelector("#checkbox").checked;
+  if (!checked) {
+    cameraPivot.rotation.y -= 0.0015;
+  }
   controls.update();
   cloudMesh.rotation.y += 0.0003;
   // cloudMesh.rotation.x -= 0.0003;

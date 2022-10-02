@@ -36814,7 +36814,7 @@ var convertLatLngToCartesian = function convertLatLngToCartesian(lat, lng) {
 scene = new _three.Scene(); //camera
 
 camera = new _three.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 0.001, 1000);
-camera.position.set(-2, 4, 20);
+camera.position.set(-2, 4, 25);
 scene.add(camera); //lights
 
 var mainLight = new _three.AmbientLight(0xffffff, 0.3);
@@ -36933,13 +36933,14 @@ var render = function render() {
 var animate = function animate() {
   requestAnimationFrame(animate); // earthMesh.rotation.y -= 0.0015;
 
-  cameraPivot.rotation.y -= 0.0015;
+  var checked = document.querySelector("#checkbox").checked;
+
+  if (!checked) {
+    cameraPivot.rotation.y -= 0.0015;
+  }
+
   controls.update();
-<<<<<<< HEAD
-  cloudMesh.rotation.y -= 0.0003; // cloudMesh.rotation.x -= 0.0003;
-=======
   cloudMesh.rotation.y += 0.0003; // cloudMesh.rotation.x -= 0.0003;
->>>>>>> 0d716061d929e032c68f204bd6b02ae095be7b4a
 
   render();
 };
@@ -36982,11 +36983,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58944" + '/');
-=======
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59961" + '/');
->>>>>>> 0d716061d929e032c68f204bd6b02ae095be7b4a
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59513" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
